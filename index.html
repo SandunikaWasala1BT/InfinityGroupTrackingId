@@ -347,10 +347,23 @@
                                             <div class="elementor-menu-anchor" id="suitability"></div>
                                         </div>
                                     </div>
+									<script>
+(function () {
+    const trackingId = "TRK-" + Date.now();
+
+    window.addEventListener("load", function () {
+        document.querySelector("#qualifyFrame").src =
+            "https://gyde365-infinity-group-bc-test.azurewebsites.net/?trackingid=" + trackingId;
+    });
+})();
+</script>
+
                                     <div class="elementor-element elementor-element-e921fd3 elementor-widget elementor-widget-shortcode" data-id="e921fd3" data-element_type="widget" data-widget_type="shortcode.default">
                                         <div class="elementor-widget-container">
                                             <div class="elementor-shortcode">
-                                                <iframe src="https://gyde365-infinity-group-bc-test.azurewebsites.net/?trackingid=123454655544" style="min-height: 110vh;min-width: 160vh;"></iframe>
+                                                <iframe id="qualifyFrame"
+    style="min-height: 110vh;min-width: 160vh;">
+</iframe>
                                             </div>
                                         </div>
                                     </div>
