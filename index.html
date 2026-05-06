@@ -347,26 +347,50 @@
                                             <div class="elementor-menu-anchor" id="suitability"></div>
                                         </div>
                                     </div>
-									<script>
-(function () {
-    const trackingId = "TRK-" + Date.now();
-
-    window.addEventListener("load", function () {
-        document.querySelector("#qualifyFrame").src =
-            "https://gyde365-infinity-group-bc-test.azurewebsites.net/?trackingid=" + trackingId;
-    });
-})();
-</script>
+									
 
                                     <div class="elementor-element elementor-element-e921fd3 elementor-widget elementor-widget-shortcode" data-id="e921fd3" data-element_type="widget" data-widget_type="shortcode.default">
-                                        <div class="elementor-widget-container">
-                                            <div class="elementor-shortcode">
-                                                <iframe id="qualifyFrame"
-    style="min-height: 110vh;min-width: 160vh;">
-</iframe>
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="elementor-widget-container">
+        <div class="elementor-shortcode">
+
+            <!-- iframe WITHOUT src initially -->
+            <iframe id="surveyFrame" style="min-height: 110vh; min-width: 160vh;"></iframe>
+
+            <!-- JS INSIDE SAME DIV CONTEXT -->
+            <script>
+                (function () {
+
+                    // 1. Get trackingid from parent page URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const trackingId = urlParams.get("trackingid");
+
+                    // 2. Build survey URL
+                    let surveyUrl = "https://gyde365-infinity-group-bc-test.azurewebsites.net/";
+
+                    if (trackingId) {
+                        surveyUrl += "?trackingid=" + encodeURIComponent(trackingId);
+                    }
+
+                    // 3. Set iframe source after page loads
+                    function setIframe() {
+                        const iframe = document.getElementById("surveyFrame");
+                        if (iframe) {
+                            iframe.src = surveyUrl;
+                        }
+                    }
+
+                    if (document.readyState === "loading") {
+                        document.addEventListener("DOMContentLoaded", setIframe);
+                    } else {
+                        setIframe();
+                    }
+
+                })();
+            </script>
+
+        </div>
+    </div>
+</div>
                                 </div>
                             </div>
                             <div class="post-tags"></div>
